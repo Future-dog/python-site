@@ -1,9 +1,9 @@
 from controllers.site_controller import SiteController, TestController
 
 routes = {
-    "/home" : [SiteController, SiteController.index],
-    "/about" : [SiteController, SiteController.about],
-    "/test" : [TestController, TestController.test],
-    "/test-action" : [TestController, TestController.test_action],
-    
+    r"^/home$" : [SiteController, SiteController.index],
+    r"^/about$" : [SiteController, SiteController.about],
+    r"^/test$" : [TestController, TestController.test],
+    r"^/test-action$" : [TestController, TestController.test_action],
+    r"^/hello/(.*)$" : [SiteController, SiteController.hello],
 }

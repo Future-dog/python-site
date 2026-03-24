@@ -10,6 +10,10 @@ class SiteController:
     
     def about(self, request, response):
         response.text = self.view.render_html('site/about.html', {'title': 'About', 'h1' : 'Онанас'})
+
+    def hello(self, request, response, user_name):
+        response.text = self.view.render_html('site/hello.html', {'title': 'Приветствие', 'h1' : 'Привет', 'user' : user_name})
+        
 # ----------------------------------
 
 class TestController:

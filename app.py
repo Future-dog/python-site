@@ -1,5 +1,5 @@
+import os, re, routes
 from webob import Request, Response
-import routes
 from whitenoise import WhiteNoise
 
 class API:
@@ -21,21 +21,28 @@ class API:
     
     def handle_request(self, request):
         response = Response()
-        handler = self.find_handler(request_path=request.path)
+        result = self.find_handler_re(request_path=request.path)
         
-        if handler is not None:
+        if result is not None:
+            handler, params = result
             controller = handler[0]()
             action = handler[1]
-            action(controller, request, response)
+            action(controller, request, response, *params)
         else:
             self.default_response(response)
         # response.text = f"ПРивет, ты запростл страницу {requset_url}"
         return response
 
-    def find_handler(self, request_path):
+    # def find_handler(self, request_path):
+    #     for path, handler in self.routes.items():
+    #         if path == request_path:
+    #             return handler
+
+    def find_handler_re(self, request_path):
         for path, handler in self.routes.items():
-            if path == request_path:
-                return handler
+            match = re.search(path, request_path)
+            if match is not None:
+                return handler, match.groups()
 
     def default_response(self, response):
         response.status_code = 404
