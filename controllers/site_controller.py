@@ -1,10 +1,7 @@
-from views.view import View
+from controllers.controller import Controller
+from services.db import Db
 
-class SiteController:
-    def __init__(self):
-        self.layout = "default"
-        self.view = View(self.layout)
-
+class SiteController(Controller):
     def index(self, request, response):
         response.text = self.view.render_html('site/index.html', {'title': 'MVC framework', 'h1' : 'Главная страница'})
     
@@ -13,14 +10,10 @@ class SiteController:
 
     def hello(self, request, response, user_name):
         response.text = self.view.render_html('site/hello.html', {'title': 'Приветствие', 'h1' : 'Привет', 'user' : user_name})
-        
+   
 # ----------------------------------
 
-class TestController:
-    def __init__(self):
-        self.layout = "default"
-        self.view = View(self.layout)
-
+class TestController(Controller):
     def test(self, request, response):
         response.text = self.view.render_html('site/test.html', {'title': 'TEST', 'h1' : 'Тестовая страница'})
 
