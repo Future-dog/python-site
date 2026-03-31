@@ -13,7 +13,7 @@ class Db:
             item = dict(row)
             item_obj = cls()
             for title, value in item.items():
-                if hasattr(item_obj, tetli):
+                if hasattr(item_obj, title):
                     setattr(item_obj, title, value)
             items.append(item_obj)
         return items
