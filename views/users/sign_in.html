@@ -1,0 +1,23 @@
+<h1>Log In</h1>
+
+
+{% if error %}
+  <p style="color: crimson;">{{ error }}</p>
+{% endif %}
+<div>
+  <form novalidate action="" method="POST" style="height: 100%; border-radius: 25px; width: 30%; margin: 0 auto; background-color: burlywood; padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div style="margin-bottom: 2rem;">
+      <label for="inputName">Логин: </label>
+      <input type="text" id="inputName" name="nickname"
+      {% if user %}
+        value="{{ user_data.nickname }}"
+      {% endif %}>
+    </div>
+    
+    <div style="margin-bottom: 2rem;">
+      <label for="inputPassword">Password: </label>
+      <input type="password" id="inputPassword" name="password">
+    </div>
+    <input type="submit">
+  </form>
+</div>

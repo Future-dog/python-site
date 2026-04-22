@@ -1,10 +1,20 @@
 from controllers.site_controller import SiteController
 from controllers.test_controller import TestController
 from controllers.articles_controller import ArticlesController
+from controllers.users_controller import UsersController
 
 routes = {
     r'^/article/(\d+)$': [ArticlesController, ArticlesController.view],
+    r'^/article/(\d+)/edit$': [ArticlesController, ArticlesController.edit],
+    r'^/article/(\d+)/delete$': [ArticlesController, ArticlesController.delete],
     r'^/articles$': [ArticlesController, ArticlesController.index],
+    r'^/articles/add$': [ArticlesController, ArticlesController.add],
+    
+    r'^/user/register$': [UsersController, UsersController.sign_up],
+    r'^/user/login$': [UsersController, UsersController.sign_in],
+    r'^/user/logout$':[UsersController, UsersController.logout],
+    r'^/user/users$':[UsersController, UsersController.index],
+    
     r'^/home$': [SiteController, SiteController.index],
     r'^/about$': [SiteController, SiteController.about],
     r'^/hello/(.*)$': [SiteController, SiteController.hello],
